@@ -14,13 +14,15 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 //Submitting contact
-document.getElementById('contact-form').addEventListener('submit', function(event) {
+const contactForm = document.getElementById('contact_form');
+contactForm.addEventListener('submit', function(event){
     event.preventDefault(); // Prevent form submission
 
     const formData = new FormData(this);
     const data = Object.fromEntries(formData.entries());
+    
 
-    fetch('http://localhost:3000/send-email', {
+    fetch('http://localhost:2100/send-email', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -134,6 +134,42 @@ nav .nav_links:hover{
     color: aqua;
 }
 
+/*Responsiveness*/
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 20px;
+    }
+
+    header p {
+        font-size: 14px;
+    }
+    .profile-pic{
+        width: 80%;
+        height: 50%;
+        align-self: center;
+    }
+    nav ul li {
+        margin: 5px 0;
+    }
+    .profile{
+        display: block;
+    }
+    h2 {
+        font-size: 20px;
+    }
+
+    form input, form textarea {
+        padding: 8px;
+    }
+
+    form button {
+        padding: 8px 15px;
+    }
+
+    footer {
+        font-size: 12px;
+    }
+}
 /* Animation styles */
 .letter {
     display: inline-block;

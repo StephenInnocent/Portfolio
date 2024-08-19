@@ -2,12 +2,15 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+require("dotenv").config();
 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const email = process.env.email;
-const mailPassword = process.env.password;
+// const mailAddress = process.env.mailAddress;
+// const mailPassword = process.env.password;
+const mailAddress = "mandonginnocent88@gmail.com";
+const mailPassword = "Mandongcodes001"
 // Middleware
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,18 +20,20 @@ app.use(bodyParser.json());
 const transporter = nodemailer.createTransport({
     service: 'gmail', // Use your email service provider
     auth: {
-        user: email, // Replace with your email
+        user: mailAddress, // Replace with your email
         pass: mailPassword // Replace with your email password or app password
     }
 });
+console.log(mailAddress,mailPassword);
+
 
 // Handle form submission
 app.post('/send-email', (req, res) => {
     const { name, email, message } = req.body;
-
+    
     const mailOptions = {
         from: email,
-        to: 'your-email@gmail.com', // Replace with your email
+        to: mailAddress, // Replace with your email
         subject: `New Contact Form Submission from ${name}`,
         text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
     };
@@ -40,6 +45,8 @@ app.post('/send-email', (req, res) => {
         }
         res.status(200).send('Email sent successfully!');
     });
+    console.log("form submitted");
+
 });
 
 // Start the server
