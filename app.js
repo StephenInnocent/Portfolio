@@ -3,10 +3,14 @@ const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require("dotenv").config();
+const path = require("path");
 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 // const mailAddress = process.env.mailAddress;
 // const mailPassword = process.env.password;
 const mailAddress = "mandonginnocent88@gmail.com";
@@ -24,8 +28,11 @@ const transporter = nodemailer.createTransport({
         pass: mailPassword // Replace with your email password or app password
     }
 });
-console.log(mailAddress,mailPassword);
 
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html')); // Send the homepage HTML file
+});
 
 // Handle form submission
 app.post('/send-email', (req, res) => {
